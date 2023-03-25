@@ -1,17 +1,61 @@
+/* roboto-300 - cyrillic_latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/roboto-v30-cyrillic_latin-300.woff2') format('woff2'),
+        /* Chrome 36+, Opera 23+, Firefox 39+ */
+        url('../fonts/roboto-v30-cyrillic_latin-300.woff') format('woff');
+    /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* roboto-regular - cyrillic_latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/roboto-v30-cyrillic_latin-regular.woff2') format('woff2'),
+        /* Chrome 36+, Opera 23+, Firefox 39+ */
+        url('../fonts/roboto-v30-cyrillic_latin-regular.woff') format('woff');
+    /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* roboto-500 - cyrillic_latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/roboto-v30-cyrillic_latin-500.woff2') format('woff2'),
+        /* Chrome 36+, Opera 23+, Firefox 39+ */
+        url('../fonts/roboto-v30-cyrillic_latin-500.woff') format('woff');
+    /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 body {
     width: 100%;
     height: 100%;
+    font-family: 'Roboto';
+    font-weight: 300;
 }
 
-.sign-in-main {
+.whole-screen {
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.sign-in-main {
     background-size: no-repeat;
     background-position: center;
     background-size: cover;
@@ -19,14 +63,121 @@ body {
 }
 
 .sign-in-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    display: grid;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
+}
+
+/* booking screen */
+.booking-main {
+
+    background-attachment: scroll;
+    background-color: #F4F4F4;
+}
+
+.booking-wrapper {
+    display: grid;
+    grid-template-columns: 360px auto;
+    column-gap: 24px;
+    margin: 0 auto;
+    width: 1048px;
+}
+
+.booking-container {
+    margin: 32px;
+}
+
+.booking-header {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.exit-title {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.booking-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.booking-exit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rounded {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+}
+
+.booking-request {
+    width: 360px;
+    height: 410px;
+}
+
+.request__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px;
+    gap: 16px;
+}
+
+.request___label {
+    font-weight: 500;
+}
+
+.request__input {
+    width: 296px;
+    height: 50px;
+    border: 1px solid #C9CACC;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.request__button {
+    width: 296px;
+    height: 50px;
+    background: linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    cursor: pointer;
+    border: 0;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.request__button:hover {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
+}
+
+.request__button:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
+}
+
+.hotels-container {
+    width: 664px;
+    height: 902px;
+}
+
+.hotels-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-description {
+    display: flex;
+}
+
+.header-title {}
+
+.favorite-list {
+    width: 360px;
+    grid-column: 1;
 }

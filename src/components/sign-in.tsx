@@ -30,8 +30,8 @@ function SignInScreen(): JSX.Element {
     // };
 
     return (
-        <div className="sign-in-main">
-            <div className="sign-in-container">
+        <div className="sign-in-main whole-screen">
+            <div className="sign-in-container whole-screen">
                 <form action="" className="sign-in__form">
                     <h3 className="sign-in__title">Simple Hotel Check</h3>
                     <div className="sign-in-field">
