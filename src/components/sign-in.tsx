@@ -1,5 +1,5 @@
 import { FormEvent, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch } from "../hooks";
 import { requireAuthorization } from "../store/user-process/user-process";
 import { AppRoute, AuthorizationStatus, emailRegexp, errorLoginPasswordMessage, passwordRegexp } from "../utils/const";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,6 @@ function SignInScreen(): JSX.Element {
     const passwordRef = useRef<HTMLInputElement | null>(null);
     const [errorMessage, setErrorMessage] = useState<boolean>(false);
     let navigate = useNavigate();
-    const { location, dateCheckIn, countDay } = useAppSelector(({ HOTEL }) => HOTEL);
 
     const dispatch = useAppDispatch();
 
