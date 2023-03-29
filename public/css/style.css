@@ -42,6 +42,7 @@ body {
     height: 100%;
     font-family: 'Roboto';
     font-weight: 300;
+    background: #F4F4F4;
 }
 
 .whole-screen {
@@ -66,18 +67,52 @@ body {
     display: grid;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
+    align-items: center;
+    justify-items: center;
+}
+
+.sign-in-wrapper {
+    width: 409px;
+    min-height: 382px;
+}
+
+.sign-in__form {
+    margin: 32px;
+    display: grid;
+    row-gap: 24px;
+}
+
+.sign-in__title {
+    margin: 0 auto;
+    margin-bottom: 8px;
+}
+
+.sign-in-field {
+    display: grid;
+}
+
+.sign-in__button {
+    width: 345px;
+    margin-top: 8px;
+}
+
+.error {
+    color: #EB1717;
+
+}
+
+.error-message {
+    margin-top: 7px;
+    font-size: 12px;
 }
 
 /* booking screen */
-.booking-main {
-
-    background-attachment: scroll;
-    background-color: #F4F4F4;
-}
 
 .booking-wrapper {
     display: grid;
     grid-template-columns: 360px auto;
+    grid-template-rows: 360px 1fr;
+    row-gap: 75px;
     column-gap: 24px;
     margin: 0 auto;
     width: 1048px;
@@ -87,9 +122,12 @@ body {
     margin: 32px;
 }
 
-.booking-header {
+.header {
     font-size: 24px;
     font-weight: 500;
+}
+
+.booking__header {
     margin-bottom: 32px;
 }
 
@@ -108,6 +146,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
 }
 
 .rounded {
@@ -133,16 +172,20 @@ body {
     font-weight: 500;
 }
 
-.request__input {
-    width: 296px;
-    height: 50px;
+.input-text {
     border: 1px solid #C9CACC;
     border-radius: 4px;
     margin-top: 10px;
+    height: 50px;
+    padding-left: 16px;
+    padding-right: 19px;
 }
 
-.request__button {
-    width: 296px;
+.request__input {
+    width: 260px;
+}
+
+.button {
     height: 50px;
     background: linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
@@ -153,17 +196,196 @@ body {
     color: #FFFFFF;
 }
 
-.request__button:hover {
+.button:hover {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
 }
 
-.request__button:active {
+.button:active {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
+}
+
+.request__button {
+    width: 296px;
 }
 
 .hotels-container {
     width: 664px;
-    height: 902px;
+    height: fit-content;
+}
+
+.hotels {
+    margin: 48px 32px 32px 48px;
+}
+
+.favorite-list .hotel-information {
+    grid-template-columns: none;
+    position: absolute;
+}
+
+
+.favorite-list .hotel-container {
+    display: grid;
+}
+
+.favorite-list .hotels-list {
+    display: grid;
+}
+
+.favorite-list .hotel-number-favorite {
+    grid-column-start: 2;
+}
+
+.favorite-list .hotel-name {
+    max-width: 240px;
+}
+
+.favorite-container {
+    margin: 32px 32px 37px 32px;
+
+}
+
+.favorite-hotels {
+    font-size: 17px;
+    display: flex;
+    gap: 8px;
+}
+
+.count-favorite {
+    display: flex;
+    gap: 4px;
+}
+
+.count {
+    font-weight: 500;
+}
+
+.hotel-information {
+    display: grid;
+    column-gap: 24px;
+    grid-template-columns: min-content 1fr;
+}
+
+.hotel-description {
+    display: grid;
+    row-gap: 9px;
+    grid-template-columns: auto min-content 1fr;
+    column-gap: 7px;
+    color: #878787;
+}
+
+.hotel-price {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+    font-weight: 400;
+    font-size: 17px;
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+.hotel-favorite {
+    background-image: url(./../img/heart.svg);
+    width: 21px;
+    height: 18px;
+    cursor: pointer;
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+
+.hotel-favorite:hover {
+    background: url(./../img/heart-hover.svg) no-repeat;
+}
+
+.hotel-favorite-active {
+    background-image: url(./../img/heart-active.svg);
+}
+
+.hotel-number-favorite {
+    display: grid;
+    align-items: end;
+    column-gap: 20px;
+    justify-items: end;
+    row-gap: 32px;
+    grid-template-columns: 1fr min-content;
+}
+
+.price-word {
+    font-size: 11px;
+    color: #878787;
+    grid-row-start: 2;
+    grid-column-start: 1;
+}
+
+.period {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.hotel-name {
+    color: #424242;
+    font-size: 17px;
+    grid-column: 1/-1;
+}
+
+.date-arrival {
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: 15px;
+}
+
+.dash {
+    width: 9px;
+    height: 1px;
+    border-top: 1px solid #C4C4C4;
+    /* position: absolute; */
+    /* size: 9px;
+    b
+    width: 1px;
+    color: #C4C4C4;
+    align-items: center; */
+    /* background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.2), transparent);
+    border: 0;
+    height: 1px;
+    margin: 22px 0 22px 0;
+    box-sizing:
+        content-box;
+    display: block; */
+    grid-column-start: 2;
+}
+
+.hotel-container {
+    display: flex;
+    height: min-content;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+/* 
+.hotels-list {
+    display: flex;
+    height: min-content;
+    justify-content: space-between;
+    margin-top: 40px;
+} */
+.hotels-list {
+    display: grid;
+}
+
+.hotel-circle {
+    display: flex;
+    width: 64px;
+    height: 64px;
+    background: rgba(65, 82, 46, 0.05);
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50%;
+}
+
+.hotel-icon {
+    margin: auto;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
 }
 
 .hotels-header {
@@ -173,11 +395,47 @@ body {
 
 .header-description {
     display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 500;
 }
 
-.header-title {}
+.header-date {
+    font-size: 24px;
+}
 
 .favorite-list {
     width: 360px;
-    grid-column: 1;
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+.favorite-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.favorite-menu {
+    display: flex;
+    gap: 8px;
+}
+
+.input {
+    font-weight: 400;
+    font-size: 14px;
+    border: 1px solid #41522E;
+    border-radius: 4px;
+    height: 18px;
+    padding: 4px;
+    padding-left: 8px;
+}
+
+.rang {
+    width: 76px;
+}
+
+.price {
+    width: 57px;
 }

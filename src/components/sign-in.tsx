@@ -1,61 +1,66 @@
-import { useRef } from "react";
-import { useAppDispatch } from "../hooks";
-import { AuthData } from "../types/auth-data";
-
-type SignInScreenProps = {
-    // language: Language;
-    onClick: () => void;
-}
-// { language, onClick }: SignInScreenProps
+import { FormEvent, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { requireAuthorization } from "../store/user-process/user-process";
+import { AppRoute, AuthorizationStatus, emailRegexp, errorLoginPasswordMessage, passwordRegexp } from "../utils/const";
+import { useNavigate } from "react-router-dom";
+import { getHotelsListData } from "../actions/actions";
+import { putDefaultData } from "../store/hotels-list/hotels-data";
+import dayjs from 'dayjs';
 
 function SignInScreen(): JSX.Element {
     const loginRef = useRef<HTMLInputElement | null>(null);
     const passwordRef = useRef<HTMLInputElement | null>(null);
+    const [errorMessage, setErrorMessage] = useState<boolean>(false);
+    let navigate = useNavigate();
+    const { location, dateCheckIn, countDay } = useAppSelector(({ HOTEL }) => HOTEL);
 
     const dispatch = useAppDispatch();
 
-    // const onSubmit = (authData: AuthData) => {
-    //     dispatch(loginAction(authData));
-    // };
+    const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+        evt.preventDefault();
 
-    // const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    //     evt.preventDefault();
-
-    //     if (loginRef.current !== null && passwordRef.current !== null) {
-    //         onSubmit({
-    //             login: loginRef.current.value,
-    //             password: passwordRef.current.value,
-    //         });
-    //     }
-    // };
+        if (loginRef.current !== null && passwordRef.current !== null
+            && passwordRef.current.value.length >= 8 && passwordRegexp.test(passwordRef.current.value)
+            && emailRegexp.test(loginRef.current.value)) {
+            dispatch(putDefaultData());
+            dispatch(getHotelsListData('Москва', dayjs().toString(), '1'));
+            dispatch(requireAuthorization(AuthorizationStatus.Auth));
+            navigate(AppRoute.Main);
+        } else {
+            setErrorMessage(true);
+        }
+    };
 
     return (
         <div className="sign-in-main whole-screen">
             <div className="sign-in-container whole-screen">
-                <form action="" className="sign-in__form">
-                    <h3 className="sign-in__title">Simple Hotel Check</h3>
-                    <div className="sign-in-field">
-                        <input
-                            ref={loginRef}
-                            className="sign-in__input"
-                            type="email"
-                            name="user-email"
-                        />
-                        <label className="sign-in__label" htmlFor="user-email">Логин</label>
-                    </div>
-                    <div className="sign-in-field">
-                        <input
-                            ref={passwordRef}
-                            className="sign-in__input"
-                            type="password"
-                            name="user-password"
-                        />
-                        <label className="sign-in__label" htmlFor="user-password">Пароль</label>
-                    </div>
-                    <div className="sign-in__submit">
-                        <button className="sign-in__button" type="submit">Войти</button>
-                    </div>
-                </form>
+                <div className="sign-in-wrapper rounded">
+                    <form action="" className="sign-in__form" onSubmit={handleSubmit}>
+                        <h3 className="sign-in__title header">Simple Hotel Check</h3>
+                        <div className={`sign-in-field ${errorMessage ? 'error' : ''} `}>
+                            <label className="sign-in__label" htmlFor="user-email">Логин</label>
+                            <input
+                                ref={loginRef}
+                                className={`sign-in__input input-text ${errorMessage ? 'error' : ''} `}
+                                type="email"
+                                name="user-email"
+                            />
+                        </div>
+                        <div className={`sign-in-field ${errorMessage ? 'error' : ''} `}>
+                            <label className="sign-in__label" htmlFor="user-password">Пароль</label>
+                            <input
+                                ref={passwordRef}
+                                className="sign-in__input input-text"
+                                type="password"
+                                name="user-password"
+                            />
+                            <div className="error-message error">{errorMessage ? errorLoginPasswordMessage : ''}</div>
+                        </div>
+                        <div className="sign-in__submit">
+                            <button className="sign-in__button button" type="submit">Войти</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 

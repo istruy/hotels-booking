@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { UserProcess } from '../../types/state';
 
 const initialState: UserProcess = {
-    authorizationStatus: AuthorizationStatus.Unknown,
+    authorizationStatus: AuthorizationStatus.NoAuth,
 };
 
 export const userProcess = createSlice({

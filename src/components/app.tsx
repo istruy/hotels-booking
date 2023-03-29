@@ -1,19 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../utils/const';
+import { useAppSelector } from '../hooks';
+import NotFoundScreen from '../page/not-found';
+import { AppRoute } from '../utils/const';
 import BookingScreen from './booking';
 import PrivateRoute from './private-route';
 import SignInScreen from './sign-in';
 
 function App(): JSX.Element {
-    // const { authorizationStatus } = useAppSelector(({ USER }) => USER);
-
-    // if (authorizationStatus === AuthorizationStatus.Unknown || !isDataLoaded) {
-    //     return (
-    //         <LoadingScreen />
-    //     );
-    // }
-
-    const authorizationStatus = AuthorizationStatus.Auth;
+    const { authorizationStatus } = useAppSelector(({ USER }) => USER);
 
     return (
         <>
@@ -23,6 +17,7 @@ function App(): JSX.Element {
                         <PrivateRoute authorizationStatus={authorizationStatus}><BookingScreen />
                         </PrivateRoute>} />
                     <Route path={AppRoute.SignIn} element={<SignInScreen />} />
+                    <Route path='*' element={<NotFoundScreen />} />
                 </Routes>
             </BrowserRouter>
         </>
